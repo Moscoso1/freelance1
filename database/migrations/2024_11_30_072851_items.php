@@ -11,22 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Item_db', function(Blueprint $table){
-              $table->string('id')->primary();  // Session ID (string, not integer)
-            $table->text('payload');          // Session data (usually serialized or encrypted)
+       Schema::create('sessions', function (Blueprint $table) {
+            // Session columns
+            $table->string('id')->primary(); // Session ID (string, not integer)
+            $table->text('payload');         // Session data (usually serialized or encrypted)
             $table->integer('last_activity'); // Timestamp of the last activity
 
-            $table->String('item');
-            $table->String('price');
-            $table->String('category');
-            $table->String('quantity');
-            $table->String('images');
-            $table->String('barcode');
-            $table->timestamps();
-            
-          
+            // Additional item-related fields
+            $table->string('item');          // Item name or description
+            $table->string('price');         // Price of the item
+            $table->string('category');      // Category of the item
+            $table->string('quantity');      // Quantity of the item
+            $table->string('images');        // Images associated with the item (e.g., URLs or file paths)
+            $table->string('barcode');       // Barcode or SKU of the item
 
-         });
+            // Timestamps for created_at and updated_at
+            $table->timestamps();           // Laravel automatically handles created_at and updated_at columns
+        });
      
     }
 
