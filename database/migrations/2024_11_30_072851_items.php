@@ -27,8 +27,7 @@ return new class extends Migration
             $table->string('images');        // Images associated with the item (e.g., URLs or file paths)
             $table->string('barcode');       // Barcode or SKU of the item
 
-            // Timestamps for created_at and updated_at
-            $table->timestamps();           // Laravel automatically handles created_at and updated_at columns
+          
         });
      
     }
