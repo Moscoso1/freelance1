@@ -1,0 +1,215 @@
+        .d1{
+            box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+
+        width:100%;
+        border-radius:10px;
+
+        }
+        .d2{
+        width:100%;
+        box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+        border-radius:10px;
+
+        }
+        .itemimg{
+        
+            top: 10px;
+        }
+        input{
+            background-color: whitesmoke;
+        }
+
+        .table-container {
+            margin-top: 50px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .table thead {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            font-weight: bold;
+        }
+
+        .table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+            padding: 15px;
+        }
+
+        .table th {
+            text-align: center;
+        }
+
+        .table td {
+            text-align: center;
+        }
+
+        .table-responsive {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+
+
+            /* Reset box-sizing */
+            * {
+                box-sizing: border-box;
+            }
+    
+            /* General styling */
+            body {
+                overflow-x: hidden;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+    
+            .container-fluid {
+                min-height: 100vh;
+                position: relative;
+                top: 70px;
+            }
+    
+           
+    
+            /* Table styles */
+            table {
+                width: 100%;
+                table-layout: fixed;
+            }
+    
+            form {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+    
+            input, select, button {
+                transition: all 0.3s ease;
+                margin-bottom: 10px;
+            }
+    
+            button {
+             
+                margin: 0;
+                border: none;
+                outline: none;
+                background-color: #28a745;
+                color: white;
+                cursor: pointer;
+            }
+    
+            button:hover {
+                background-color: #218838;
+            }
+    
+            /* Table row hover effect */
+            tr:hover {
+                background-color: #f1f1f1;
+            }
+    
+            /* Pagination styles */
+            .pagination {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px;
+            }
+    
+            .input-group {
+                width: 50%;
+            }
+
+
+
+            /* modal css */
+
+                        
+            #openModalBtn {
+
+            font-size: 16px;
+            cursor: pointer;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            }
+
+
+            .modal {
+            display: none; 
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); 
+            animation: fadeIn 0.3s ease-out;
+            }
+
+            .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 400px;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: slideIn 0.6s ease-out forwards;
+            }
+
+            .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            cursor: pointer;
+            }
+
+            .close:hover,
+            .close:focus {
+            color: black;
+            text-decoration: none;
+            }
+
+
+
+            @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            }
+
+            @media screen and (max-width: 768px) {
+                .bottomdiv{
+                    position:relative;
+                    top:30px;
+                }
+                .d1, .d2{
+                    margin-bottom: 20px;
+                }
+            }

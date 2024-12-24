@@ -1,0 +1,354 @@
+
+
+.motherdiv {
+    width: 100%;
+   
+}
+
+.div1, .div2 {
+    height: auto;
+    border:none;
+}
+
+.div3{
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+z-index: 1;
+}
+
+.upbar{
+width: 100%;
+height: 50px;
+background-color: dodgerblue;
+position: fixed;
+z-index: 2;
+right:2px;
+}
+/* Sidebar styles */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: dodgerblue;
+    overflow-x: hidden;
+    transition: 0.3s ease;
+    padding-top: 60px;
+    z-index: 1000;
+}
+
+/* Sidebar links */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    display: block;
+    margin-left: 10px;
+    transition: 0.3s ease;
+}
+
+/* Icon styling */
+.sidebar ul li a i {
+    font-size: 22px;
+}
+
+/* Close button styles */
+.sidebar .close-btn {
+    font-size: 30px;
+    color: white;
+    background: none;
+    border: none;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    cursor: pointer;
+}
+
+/* Hover effect for sidebar links */
+.sidebar ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    width: 100%;
+}
+
+.t1, .t2, .t3, .t4{
+    z-index:1;
+    position:relative;
+   width: 300px;
+    height: 150px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  margin: 20px;
+  border:none;  
+  background-color:dodgerblue;
+  border-radius: 5px;
+  top: -30px;
+  transition: 0.1s;
+}
+
+.t1:hover, .t2:hover, .t3:hover, .t4:hover{
+ transform: scale(1.1);
+}
+/* Open button styles */
+.open-btn {
+    border-radius: 10px;
+    font-size: 20px;
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 2000;
+    border: solid 1px white;
+}
+
+.open-btn:hover {
+    background-color: #218838;
+}
+/* Overlay for mobile */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+.totalimg{
+    top: -20px;
+    position:relative;
+    left:-20px;
+   
+}
+.totalincome{
+    width:60%;
+    overflow:auto;
+    height: 100px;
+    left:10px;
+    position:relative;
+}
+
+
+.totalimg {
+    float: right;
+  }
+  .downdiv{
+    width:100%;
+    height: 20px;
+    background-color: rgba(105, 105, 105, 0.7);
+    position:relative;
+    top: 29%;
+    border-bottom-right-radius:5px;
+    border-bottom-left-radius:5px;
+  }
+  .chartdiv1{
+    z-index:2;
+    width:100%;
+    height:380px;
+    border-radius: 10px;
+    position:relative;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    
+  }
+  .bottomdiv{
+    width:100%;
+    height: 50px;
+    background-color:gray;
+    position:relative;
+    top: 30px;
+  }
+/* Initial state: Centered and invisible */
+.containerbar {
+    position: relative; /* Default positioning */
+    width: 100%;
+    border: 2px solid white;
+    top: 10px; /* Final position from the top */
+    border-radius: 10px;
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    opacity: 0; /* Initially invisible */
+    transform: translate(-50%, -50%); /* Center it initially */
+    left: 50%; /* Horizontally center it */
+    transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out; /* Transition for opacity and movement */
+}
+
+/* When the element is fully loaded, we remove centering and fade it in */
+.containerbar.loaded {
+    opacity: 1; /* Fade to fully visible */
+    transform: translate(-50%, 0); /* Reset vertical centering after fade */
+}
+
+
+
+.search{
+    width: 40%;
+    height: 30px;
+    border: 1px solid;
+    float: right;
+}
+.tablediv{
+  position:relative;
+  width:97%;
+}
+
+
+.toast-success {
+    background-color: #28a745 !important;
+}
+
+.toast-error {
+    background-color: #dc3545 !important; 
+}
+
+.toast {
+    color: white !important; 
+}
+
+
+/* Responsive styles for smaller screens */
+@media screen and (max-width: 768px) {
+   
+    .divpie{
+        position: relative;
+        top: -30px;
+    }
+    .chartdiv1{
+        z-index:2;
+        width:100%;
+        height:380px;
+        border-radius: 10px;
+        position:relative;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      top:50px;
+      }
+
+    .containerbar{
+        position:relative;
+        width: 100%;
+        top: 25px;
+        border-radius: 10px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    }
+
+    .div1, .div2 {
+        height: auto;
+        border:none;
+    }
+    .chartdiv1{
+        z-index:2;
+        width:100%;
+        height:380px;
+       border-radius: 10px;
+        position:relative;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    
+        
+      }
+
+    .div3{
+        border: 1px solid;
+    
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        top:0px;
+        margin-bottom: 10px;
+        }
+   
+
+    .totalincome{
+        width:60%;
+        overflow:auto;
+        height: 100px;
+        right:-50px;
+        position:relative;
+        top:25px;   
+    }
+   h4{
+    font-size: 13px;
+   }
+    .t1, .t2, .t3, .t4{
+        position:relative;
+        width: 200px;
+        height: 120px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+         margin: 15px;
+        padding-bottom: 15px;
+        position: relative;
+        top:-20px;
+        border:none;
+    }
+    .totalimg{
+        position:relative;
+            width: 50px;
+            height: 50px;
+            width: 30px;
+            height: 30px;
+        }
+    
+    /* Sidebar transitions */
+    .sidebar {
+        width: 100%;
+        height: 0;
+        position: fixed;
+        z-index: 1000;
+        border: 3px white solid;
+    }
+
+    .sidebar.open {
+        height: 100%;
+        width: 100%;
+    }
+
+    .sidebar ul li {
+        text-align: center;
+    }
+
+    .sidebar .close-btn {
+        top: 10px;
+        right: 10px;
+    }
+
+    .open-btn {
+        font-size: 20px;
+        top: 15px;
+        left: 20px;
+    }
+
+   
+}
+
+/* Full-width sidebar for larger screens */
+@media screen and (min-width: 769px) {
+    .sidebar {
+        width: 0;
+        height: 100%;
+    }
+  
+    .sidebar.open {
+        width: 250px;
+    }
+.div1{
+    height: 400px;
+}
+    .overlay {
+        display: none;
+    }
+ 
+}
