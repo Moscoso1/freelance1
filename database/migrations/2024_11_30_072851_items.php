@@ -15,7 +15,7 @@ return new class extends Migration
             // Session columns
             $table->string('id')->primary(); // Session ID (string, not integer)
             $table->text('payload');         // Session data (usually serialized or encrypted)
-            $table->string('last_activity'); // Timestamp of the last activity
+            $table->integer('last_activity'); // Timestamp of the last activity
             $table->string('user_id'); // Timestamp of the last activity
              $table->string('ip_address'); // Timestamp of the last activity
              $table->string('user_agent'); // Timestamp of the last activity
