@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('Item_db', function(Blueprint $table){
-            $table->string('id');
+              $table->string('id')->primary();  // Session ID (string, not integer)
+            $table->text('payload');          // Session data (usually serialized or encrypted)
+            $table->integer('last_activity'); // Timestamp of the last activity
+
             $table->String('item');
             $table->String('price');
             $table->String('category');
@@ -20,6 +23,9 @@ return new class extends Migration
             $table->String('images');
             $table->String('barcode');
             $table->timestamps();
+            
+          
+
          });
      
     }
