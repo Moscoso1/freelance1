@@ -1,29 +1,65 @@
 <?php
 
-namespace App\Providers;
+namespace App\Session;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Session\SessionManager;
-use App\Session\CustomDatabaseSessionHandler;  // Correct the namespace to App\Session
+use SessionHandlerInterface;
+use Illuminate\Database\ConnectionInterface;
 
-class AppServiceProvider extends ServiceProvider
+class CustomDatabaseSessionHandler implements SessionHandlerInterface
 {
-    public function register()
-    {
-        // Register the custom session handler
-        $this->app->singleton('session', function ($app) {
-            // Create an instance of your custom session handler
-            $handler = new CustomDatabaseSessionHandler(
-                $app['db']->connection(), 'sessions'  // 'sessions' is the name of the session table
-            );
+    protected $database;
+    protected $table;
 
-            // Return a new instance of the SessionManager with the custom handler
-            return new SessionManager($app, $handler);
-        });
+    public function __construct(ConnectionInterface $database, $table = 'sessions')
+    {
+        $this->database = $database;
+        $this->table = $table;
     }
 
-    public function boot()
+    public function open($savePath, $sessionName)
     {
-        // Any bootstrapping needed for your service provider
+        return true;
+    }
+
+    public function close()
+    {
+        return true;
+    }
+
+    public function read($sessionId)
+    {
+        $session = $this->database->table($this->table)
+            ->where('id', $sessionId)
+            ->first();
+
+        return $session ? $session->payload : '';
+    }
+
+    public function write($sessionId, $data)
+    {
+        $this->database->table($this->table)->updateOrInsert(
+            ['id' => $sessionId],
+            ['payload' => $data, 'last_activity' => time()]
+        );
+
+        return true;
+    }
+
+    public function destroy($sessionId)
+    {
+        $this->database->table($this->table)
+            ->where('id', $sessionId)
+            ->delete();
+
+        return true;
+    }
+
+    public function gc($maxLifetime)
+    {
+        $this->database->table($this->table)
+            ->where('last_activity', '<', time() - $maxLifetime)
+            ->delete();
+
+        return true;
     }
 }
