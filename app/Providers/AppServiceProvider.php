@@ -1,65 +1,33 @@
 <?php
 
-namespace App\Session;
+namespace App\Providers;
 
-use SessionHandlerInterface;
-use Illuminate\Database\ConnectionInterface;
+use Illuminate\Support\ServiceProvider;
 
-class CustomDatabaseSessionHandler implements SessionHandlerInterface
+class AppServiceProvider extends ServiceProvider
 {
-    protected $database;
-    protected $table;
-
-    public function __construct(ConnectionInterface $database, $table = 'sessions')
+    /**
+     * Register any application services.
+     */
+    public function register(): void
     {
-        $this->database = $database;
-        $this->table = $table;
+         // Register the custom session handler
+         $this->app->singleton('session', function ($app) {
+            // Create an instance of your custom session handler
+            $handler = new CustomDatabaseSessionHandler(
+                $app['db']->connection(), 'sessions'  // 'sessions' is the name of the session table
+            );
+
+            // Return a new instance of the SessionManager with the custom handler
+            return new SessionManager($app, $handler);
+        });
     }
 
-    public function open($savePath, $sessionName)
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
     {
-        return true;
-    }
-
-    public function close()
-    {
-        return true;
-    }
-
-    public function read($sessionId)
-    {
-        $session = $this->database->table($this->table)
-            ->where('id', $sessionId)
-            ->first();
-
-        return $session ? $session->payload : '';
-    }
-
-    public function write($sessionId, $data)
-    {
-        $this->database->table($this->table)->updateOrInsert(
-            ['id' => $sessionId],
-            ['payload' => $data, 'last_activity' => time()]
-        );
-
-        return true;
-    }
-
-    public function destroy($sessionId)
-    {
-        $this->database->table($this->table)
-            ->where('id', $sessionId)
-            ->delete();
-
-        return true;
-    }
-
-    public function gc($maxLifetime)
-    {
-        $this->database->table($this->table)
-            ->where('last_activity', '<', time() - $maxLifetime)
-            ->delete();
-
-        return true;
+        //
     }
 }
