@@ -2,21 +2,66 @@
 
 namespace App\Session;
 
-use Illuminate\Session\Handler\DatabaseSessionHandler;
+use SessionHandlerInterface;
 use Illuminate\Database\ConnectionInterface;
 
-class CustomDatabaseSessionHandler extends DatabaseSessionHandler
+class CustomDatabaseSessionHandler implements SessionHandlerInterface
 {
-    public function __construct(ConnectionInterface $database, $table)
+    protected $database;
+    protected $table;
+
+    public function __construct(ConnectionInterface $database, $table = 'sessions')
     {
-        parent::__construct($database, $table);
+        $this->database = $database;
+        $this->table = $table;
     }
 
-    // Override the method that generates the session ID
-    public function generateSessionId()
+    public function open($savePath, $sessionName)
     {
-        // Custom logic to generate session IDs (e.g., shorter IDs)
-        return bin2hex(random_bytes(16)); // Generates a 32-character hexadecimal ID
+        // No-op
+        return true;
+    }
+
+    public function close()
+    {
+        // No-op
+        return true;
+    }
+
+    public function read($sessionId)
+    {
+        $session = $this->database->table($this->table)
+            ->where('id', $sessionId)
+            ->first();
+
+        return $session ? $session->payload : '';
+    }
+
+    public function write($sessionId, $data)
+    {
+        $this->database->table($this->table)->updateOrInsert(
+            ['id' => $sessionId],
+            ['payload' => $data, 'last_activity' => time()]
+        );
+
+        return true;
+    }
+
+    public function destroy($sessionId)
+    {
+        $this->database->table($this->table)
+            ->where('id', $sessionId)
+            ->delete();
+
+        return true;
+    }
+
+    public function gc($maxLifetime)
+    {
+        $this->database->table($this->table)
+            ->where('last_activity', '<', time() - $maxLifetime)
+            ->delete();
+
+        return true;
     }
 }
-
