@@ -1,4 +1,5 @@
 <?php
+
 use App\Session\CustomDatabaseSessionHandler;
 use Illuminate\Database\ConnectionInterface;
 
