@@ -1,24 +1,26 @@
 <?php
 
-use App\Session\CustomDatabaseSessionHandler;
-use Illuminate\Database\ConnectionInterface;
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public function register()
+    /**
+     * Register any application services.
+     */
+    public function register(): void
     {
-        $this->app->singleton('session', function ($app) {
-            $handler = new CustomDatabaseSessionHandler(
-                $app['db']->connection(), 'sessions'
-            );
-
-            return new \Illuminate\Session\SessionManager($app, $handler);
-        });
+        //
     }
 
-    public function boot()
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
     {
         //
     }
 }
+
 
