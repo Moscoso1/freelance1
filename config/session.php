@@ -4,11 +4,6 @@ use Illuminate\Support\Str;
 
 return [
 
-    'driver' => 'custom',  // Set this to use the custom driver
-
-'custom' => [
-    'handler' => \App\Session\CustomSessionHandler::class,
-],
 
 
     /*
