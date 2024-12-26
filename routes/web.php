@@ -13,6 +13,9 @@ use App\Http\Controllers\viewController;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 Route::prefix('/view')->group( function(){
