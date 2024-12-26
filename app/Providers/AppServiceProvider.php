@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use App\Services\CustomSessionServiceProvider; // Ensure this is correct
 
 use Illuminate\Support\ServiceProvider;
 

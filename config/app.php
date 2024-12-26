@@ -12,11 +12,6 @@ return [
     | other UI elements where an application name needs to be displayed.
     |
     */
-    'providers' => [
-    // Other service providers...
-    App\Providers\CustomSessionServiceProvider::class,
-],
-
 
     'name' => env('APP_NAME', 'Laravel'),
 
