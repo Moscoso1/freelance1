@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('sessions', function (Blueprint $table) {
+       Schema::create('item_db', function (Blueprint $table) {
             // Session columns
-            $table->string('id')->primary(); // Session ID (string, not integer)
+            $table->id(); // Session ID (string, not integer)
             $table->string('item');          // Item name or description
             $table->string('price');         // Price of the item
             $table->string('category');      // Category of the item
             $table->string('quantity');      // Quantity of the item
             $table->string('images');        // Images associated with the item (e.g., URLs or file paths)
             $table->string('barcode');       // Barcode or SKU of the item
-
+            $timestamps();
           
         });
      
